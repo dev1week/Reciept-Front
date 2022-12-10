@@ -4,8 +4,7 @@ import "./ExpensesFilter.css";
 
 const ExpensesFilter = (props) => {
   const [enteredFilterData, setEnteredFilterData] = useState("");
-  console.log("Filter");
-  console.log(props);
+
   const fliterChangeHandler = (event) => {
     setEnteredFilterData(event.target.value);
   };
