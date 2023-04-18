@@ -16,7 +16,8 @@ const ExpenseChart = (props) => {
     { label: "Dec", value: 0 },
   ];
   for (const expense of props.expenses) {
-    const expenseMonth = expense.date.getMonth(); //1월을 0으로 반환함
+    const date = new Date(expense.date);
+    const expenseMonth = date.getMonth(); //1월을 0으로 반환함
     chartDataPoints[expenseMonth]["value"] += expense.amount;
   }
 
