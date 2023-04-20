@@ -5,7 +5,7 @@ import axios from "axios";
 const GetExpense = (props) => {
   const saveExpenseDataHandler = () => {
     axios
-      .get("http://127.0.0.1:8000/movies/")
+      .get("http://127.0.0.1:8000/receipts/")
       .then((response) => {
         const expenseData = response.data;
         props.onAddExpense(expenseData);
