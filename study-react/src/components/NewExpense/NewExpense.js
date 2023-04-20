@@ -30,7 +30,7 @@ const NewExpense = (props) => {
       />
     );
   } else {
-    content = <button onClick={startEditingHandler}>Add New Expense</button>;
+    content = <button onClick={startEditingHandler}>영수증 추가하기</button>;
   }
 
   return <div className="new-expense">{content}</div>;
