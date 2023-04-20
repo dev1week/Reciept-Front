@@ -1,71 +1,54 @@
-# React
+### 소개
+**⇒  [배포용 코드 보러가기](https://github.com/dev1week/Receipt-Service)**
 
-[0. Setting ](https://www.notion.so/0-Setting-1436c5cf92444d908e57225171f434de)
 
-[1. 디렉토리 구조 ](https://www.notion.so/1-0aeb911aad4742b48f5ed0dd3355c3e6)
 
-# 리액트란?
 
-- 자바스크립트 라이브러로 ui를 만드는데 사용함
+![Untitled](https://oceankeeper-image.s3.ap-northeast-2.amazonaws.com/Untitled.png)
 
-## 자바스크립트가 필요한 이유
+![Untitled](https://oceankeeper-image.s3.ap-northeast-2.amazonaws.com/Untitled-2.png)
 
-- 전통적인 웹사이트들은 요청을 보내면 전체 html 페이지를 다시 보내준다.
-    - 브라우저에서 자바스크립트는 dom(렌더링)을 조작 가능 ⇒ 사용자가 보는 것들을 일부만 변경 가능
+네이버 클라우드 OCR을 활용하여 가계부 웹앱을 제작하였습니다. 
 
-## 자바스크립트 대신 리액트가 필요한 이유
+### 제공하는 기능
+1. 사용자가 영수증 이미지를 업로드하면 영수증의 내용을 글자로 변환합니다.
+2. 영수증 데이터를 종합하여 가계부 형식으로 재가공하는 기능을 수행합니다. 
 
-- 자바스크립트로 작업할 때는 모든 단계를 일일히 작성해야함 (명령형 접근방식)
-    - 계속해서 되풀이되는 저수준의 코드만을 사용
-- 사용자 지정 태그 ⇒ 컴포넌트를 사용함
-    - 복잡한 사용자 ui 구현 가능
-    - 고수준의 구문 제공 ⇒ 선언형 방식, 선언형 컴포넌트 중심의 방식
+### Demo
 
-## 사용
+**⇒ [Demo Link](https://github.com/dev1week/Receipt-App-Server)**
 
-- 화면에 무엇이 표시되어야하는지를 정의
-    - React가 거기까지 도달하는 방법을 알아내도록 해야함
-- 선언형
-    - 원하는 결과 (UI)를 정의하고 React가 단계를 구성함
+### Stack
 
-# 차세대 자바스크립트
+- `**Django Rest Framework` , `React` , `Docker`,`NaverCloud`**
 
-[차세대 자바스크립트 ](https://www.notion.so/dc4c6906738040f4b8cefb6dbe961b4a)
+### Role
 
-# 리액트 프로젝트 설정
+**영수증 도메인 API 구축 `Django Rest Framework`**
 
-```jsx
-npx create-react-app 폴더명 
-```
+⇒ [API](https://www.notion.so/App-api-9a1dca547ee5471cad284478f35c828e) 
 
-# 컴포넌트
+**⇒  [Git](https://github.com/dev1week/Receipt-App-Server)**
 
-[컴포넌트 ](https://www.notion.so/adfc19899005424e9896ee0a8ea8a872)
+**네이버 클라우드에서 제공하는 OCR API 활용 및 Custom API 제작**
 
-# JSX
+    1. 사진을 multipart로 전송 받는 로직 구현 
+    2. 전송받은 사진 정보를 바탕으로 OCR API가 요구하는 요청에 맞도록  json body 생성 로직 구현 
+    3. 네이버 클라우드 ocr api를 통해 분석된 내용을 Db에 저장하는 로직 구현
+    4. DB 내 데이터 CRUD API 구현 
 
-[JSX](https://www.notion.so/JSX-0a5f9cfc0c174bb0ba01695a7e9ee0fd)
+**영수증 인식 프론트 구축 `React`**
 
-# State
+**⇒  [Git](https://github.com/dev1week/Reciept-React)**
 
-[State ](https://www.notion.so/State-e518f9d048fa4d7eaa7068a534a53c6c)
+    1. 연도별 필터링 기능 
+    2. 필터링한 연도내 각 월별 비용 그래프 구현 
+    3. 양식 입력창 숨기기 보이기 버튼 구현
+    4. Django Rest Frame work api 연동 
+    5. Multipart 이용 사진 전송 기능 구현 
 
-# 목록과 조건부 컨텐츠
-
-[동적 목록 생성 ](https://www.notion.so/1cace70722424c75a5e497fed5d5ddcc)
-
-[Key](https://www.notion.so/Key-45376be87b8344b19e0becf887b5ce69)
-
-[조건부 렌더링 ](https://www.notion.so/0e02477d937c409f8ea9757443b55d13)
-
-# 차트 만들기
-
-[Chart](https://www.notion.so/Chart-02a9a3ebfb8847879a433a27e7f79dbf)
-
-# 동적으로 스타일 제어
-
-[Conditional / Dynamic Styles ](https://www.notion.so/Conditional-Dynamic-Styles-b84eef11ce1f4f3280e72483a29262f9)
-
-# 프로젝트
-
-[프로젝트 ](https://www.notion.so/4fb324c386c8438c9096f168e9fa80bc)
+**Docker 활용 네이버 클라우드 서버 플랫폼에서 배포 경험**
+**⇒  [배포용 코드 보러가기](https://github.com/dev1week/Receipt-Service)**
+- requirements.txt 추출 후 도커 파일과 이미지 생성, 이미지 도커 허브에 등록
+- 로컬에서 도커 이미지 빌드 테스트 후 네이버 클라우드에서 도커 활용 배포)
+- 도커 컴포즈를 이용하여 db이미지, 장고 환경이미지, react 환경 이미지를 동시에관리 
