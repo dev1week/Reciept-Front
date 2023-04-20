@@ -1,76 +1,47 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+import axios from "axios";
 const ExpenseForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [file, setFile] = useState(null);
 
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+  const handleFileInputChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
-  const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-  };
-
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
-  };
-
-  const submitHandler = (event) => {
+  const handleImageSubmit = (event) => {
     event.preventDefault();
-
-    const expenseData = {
-      title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate),
-    };
-
-    props.onSaveExpenseData(expenseData);
-    setEnteredTitle("");
-    setEnteredDate("");
-    setEnteredAmount("");
+    const formData = new FormData();
+    formData.append("file", file);
+    axios
+      .post("http://127.0.0.1:8000/analyze/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          alert(
+            "업로드가 완료되었습니다! 업데이트 버튼을 눌러 가계부를 갱신 후 원하는 연도를 선택해주세요!"
+          );
+        } else if (response.status == 400) {
+          alert(
+            "이미지의 영수증이 정확하지 않습니다. 다른 이미지를 사용해주세요"
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div classname="new-expense__control">
-          <lable>Title</lable>
-          <input
-            type="text"
-            value={enteredTitle}
-            onChange={titleChangeHandler}
-          />
-        </div>
-        <div classname="new-expense__control">
-          <lable>Amount</lable>
-          <input
-            type="number"
-            min="0.01"
-            step="0.01"
-            value={enteredAmount}
-            onChange={amountChangeHandler}
-          />
-        </div>
-        <div classname="new-expense__control">
-          <lable>Date</lable>
-          <input
-            type="date"
-            min="2019-01-01"
-            max="2022-12-31"
-            value={enteredDate}
-            onChange={dateChangeHandler}
-          />
-        </div>
-        <div className="new-expense__actions">
-          <button type="submit">Add Expense</button>
-          <button type="button" onClick={props.onCancelEvent}>
-            Cancle
-          </button>
-        </div>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={handleImageSubmit}>
+        <input id="file-upload" type="file" onChange={handleFileInputChange} />
+        <button type="submit">Upload</button>
+      </form>
+    </div>
   );
 };
 
